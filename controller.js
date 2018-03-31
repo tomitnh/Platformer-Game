@@ -19,25 +19,30 @@ size = 10;
 var loaded = false;
 
 var hero = new Hero('./Sprite/babyninja.png');
+hero.y = 250;
+hero.dir = hero.RIGHT;
+
 // Keyboard controller
 function moveHero (e) {
 	switch (e.key) {
 		case 'ArrowLeft':
 			hero.dir = hero.LEFT;
+			hero.walk();
 			break;
 		case 'ArrowRight':
 			hero.dir = hero.RIGHT;
+			hero.walk();
 			break;
-		case 'ArrowUp':
-			hero.dir = hero.BACK;
-			break;
-		case 'ArrowDown':
-			hero.dir = hero.FRONT;
-			break;
+		// case 'ArrowUp':
+		// 	hero.dir = hero.BACK;
+		// 	break;
+		// case 'ArrowDown':
+		// 	hero.dir = hero.FRONT;
+		// 	break;
 		default:
 			// nothing
 	}
-	hero.walk();
+	
 }
 document.addEventListener('keydown', moveHero);
 
@@ -50,6 +55,8 @@ function draw() {
 
 	if (loaded) {
 		hero.show();
+
+		line(0,300,canvas.width,300);
 		
 	} else {
 		ctx.fillStyle = 'green';
@@ -76,4 +83,11 @@ function dist(x1, y1, x2, y2) {
 	var a = x2 - x1;
 	var b = y2 - y1;
 	return Math.sqrt(a*a + b*b);
+}
+
+function line (x1, y1, x2, y2) {
+	ctx.beginPath();
+	ctx.moveTo(x1,y1);
+	ctx.lineTo(x2,y2);
+	ctx.stroke();
 }
