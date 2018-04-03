@@ -22,6 +22,10 @@ var hero = new Hero('./Sprite/babyninja.png');
 hero.y = 250;
 hero.dir = hero.RIGHT;
 
+var cherryTree = new Tree('./Sprite/cherrytree.png');
+cherryTree.x = 250;
+cherryTree.y = 100;
+
 // Keyboard controller
 function moveHero (e) {
 	switch (e.key) {
@@ -54,10 +58,10 @@ function rscLoaded () {
 function draw() {
 
 	if (loaded) {
-		hero.show();
-
 		line(0,300,canvas.width,300);
-		
+		hero.show();
+		cherryTree.show();
+
 	} else {
 		ctx.fillStyle = 'green';
 
